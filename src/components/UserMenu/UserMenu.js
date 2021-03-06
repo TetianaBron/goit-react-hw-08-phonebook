@@ -1,7 +1,8 @@
 import React from 'react';
-// import { connect } from 'react-redux';
-// import { authSelectors, authOperations } from '../../redux/auth';
-// import defaultAvatar from './default-avatar.png';
+import { connect } from 'react-redux';
+import authSelectors from '../../redux/auth/auth-selectors';
+import authOperations from '../../redux/auth/auth-operations';
+import defaultAvatar from '../../images/default-avatar.png';
 
 const styles = {
   container: {
@@ -26,15 +27,15 @@ const UserMenu = ({ avatar, name, onLogout }) => (
     </button>
   </div>
 );
-// const mapStateToProps = state => ({
-//   name: authSelectors.getUsername(state),
-//   avatar: defaultAvatar,
-// });
 
-// const mapDispatchToProps = {
-//   onLogout: authOperations.logOut,
-// };
+const mapStateToProps = state => ({
+  name: authSelectors.getUsername(state),
+  avatar: defaultAvatar,
+});
 
-// export default connect(mapStateToProps, mapDispatchToProps)(UserMenu);
+const mapDispatchToProps = {
+  onLogout: authOperations.logOut,
+};
 
-export default UserMenu;
+export default connect(mapStateToProps, mapDispatchToProps)(UserMenu);
+

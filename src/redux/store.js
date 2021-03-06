@@ -12,6 +12,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import phoneBookReducer from './phoneBook/phoneBook-reducer';
+import authReducer from './auth/auth-reducer';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -22,8 +23,15 @@ const middleware = [
  // logger,
 ];
 
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['token']
+};
+
 const store = configureStore({
-    reducer: {
+  reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
     phoneBook: phoneBookReducer,
     },
     middleware,
@@ -32,4 +40,5 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default { store, persistor };

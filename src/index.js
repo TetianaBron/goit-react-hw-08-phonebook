@@ -9,7 +9,6 @@ import Spinner from './components/Spinner/Spinner';
 import '../node_modules/modern-normalize/modern-normalize.css';
 import './styles/base.scss';
 
-console.log(store);
 
 ReactDOM.render(
     <Provider store={store.store}>

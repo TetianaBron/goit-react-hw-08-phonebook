@@ -18,7 +18,7 @@ class PhoneBookPage extends Component {
         contacts: PropTypes.arrayOf(PropTypes.object),
         fetchContacts: PropTypes.func,
         isLoadingContacts: PropTypes.bool,
-        error: PropTypes.object
+        error: PropTypes.string
     };
    
     componentDidMount() {

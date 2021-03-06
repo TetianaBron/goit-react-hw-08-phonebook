@@ -11,15 +11,13 @@ import {
     removeContactError
 } from './phoneBook-actions';
 
-axios.defaults.baseURL = 'http://localhost:4040';
-
 const fetchContacts = () => dispatch => {
     dispatch(fetchContactRequest());
 
     axios
         .get('/contacts')
         .then(({ data }) => dispatch(fetchContactSuccess(data)))
-        .catch (error => dispatch(fetchContactError(error)));
+        .catch (error => dispatch(fetchContactError(error.message)));
 };
 
 // Option with async/await, try/catch
@@ -47,7 +45,7 @@ const addContact = (name, number) => dispatch => {
     axios
         .post('/contacts', contact)
         .then(({ data }) => dispatch(addContactSuccess(data)))
-        .catch(error => dispatch(addContactError(error)));
+        .catch(error => dispatch(addContactError(error.message)));
 };
 
 const removeContact = (contactId) => dispatch => {
@@ -56,7 +54,7 @@ const removeContact = (contactId) => dispatch => {
     axios
         .delete(`/contacts/${contactId}`)
         .then(() => dispatch(removeContactSuccess(contactId)))
-        .catch(error => dispatch(removeContactError(error)));
+        .catch(error => dispatch(removeContactError(error.message)));
 };
 
 const operations = {
