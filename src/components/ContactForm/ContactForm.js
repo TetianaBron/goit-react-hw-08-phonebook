@@ -65,7 +65,8 @@ class ContactForm extends Component {
                     message={message} />
                 <form
                     className="Form"
-                    onSubmit={this.handleSubmit} >
+                    onSubmit={this.handleSubmit}
+                    autoComplete="off">
                     <label
                         htmlFor="name"
                         className="Label">Name</label>
@@ -94,7 +95,7 @@ class ContactForm extends Component {
                     
                     <button
                         type="submit"
-                        className="ContactFormButton">
+                        className="Button">
                       Add contact
                     </button>
                  </form>

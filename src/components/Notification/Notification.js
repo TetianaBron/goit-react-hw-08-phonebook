@@ -10,7 +10,7 @@ import selectors from '../../redux/phoneBook/phoneBook-selectors';
 class Notification extends Component {
     static propTypes = {
         message: PropTypes.string,
-        error: PropTypes.string,
+        error: PropTypes.object,
         clearError: PropTypes.func
     };
    

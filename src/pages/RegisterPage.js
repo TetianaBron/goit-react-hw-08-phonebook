@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import authOperations from '../redux/auth/auth-operations';
-
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
+import { CSSTransition } from 'react-transition-group';
 
 class RegisterPage extends Component {
   state = {
@@ -37,44 +27,62 @@ class RegisterPage extends Component {
 
     return (
       <div>
-        <h1>Страница регистрации</h1>
+            <CSSTransition
+             in={true}
+             appear={true}
+             timeout={500}
+             classNames="Title-SlideIn"
+             unmountOnExit
+             >
+             <h1 className="Title">Enter your data</h1>
+         </CSSTransition>
 
         <form
           onSubmit={this.handleSubmit}
-          style={styles.form}
+          className="Form"
           autoComplete="off"
         >
-          <label style={styles.label}>
-            Имя
-            <input
+          <label
+            htmlFor="name"
+            className="Label">
+            Name</label>
+          <input
+            className="Input"
               type="text"
               name="name"
               value={name}
               onChange={this.handleChange}
             />
-          </label>
 
-          <label style={styles.label}>
-            Почта
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={this.handleChange}
+          <label
+            htmlFor="email"
+            className="Label">
+            Email</label>
+          <input
+            className="Input"
+            type="email"
+            name="email"
+            value={email}
+            onChange={this.handleChange}
             />
-          </label>
+          
 
-          <label style={styles.label}>
-            Пароль
+          <label
+            htmlFor="password"
+            className="Label">
+            Password</label>
             <input
+              className="Input"
               type="password"
               name="password"
               value={password}
               onChange={this.handleChange}
             />
-          </label>
+          
 
-          <button type="submit">Зарегистрироваться</button>
+          <button
+            className="Button"
+            type="submit">Sign up</button>
         </form>
       </div>
     );

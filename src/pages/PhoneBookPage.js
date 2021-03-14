@@ -18,15 +18,15 @@ class PhoneBookPage extends Component {
         contacts: PropTypes.arrayOf(PropTypes.object),
         fetchContacts: PropTypes.func,
         isLoadingContacts: PropTypes.bool,
-        error: PropTypes.string
+        error: PropTypes.object
     };
    
     componentDidMount() {
         this.props.fetchContacts();
-    }   
+        
+    } ;
     
     render() {
-
         return (
             <Layout>
                 <Logo />

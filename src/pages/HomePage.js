@@ -1,22 +1,26 @@
 import React from 'react';
-import background from '../images/wellcome.jpg';
+import { CSSTransition } from 'react-transition-group';
 
-const styles = {
-  container: {
-    minHeight: 'calc(100vh - 50px)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundImage: `url(${background})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'contain',
-    backgroundRepeat: 'no-repeat'
-  },
+const HomePage = () => {
+  return (
+    <>
+     <CSSTransition
+             in={true}
+             appear={true}
+             timeout={500}
+             classNames="Title-SlideIn"
+             unmountOnExit
+             >
+             <h1 className="Title">Hello <span role="img" aria-label="Иконка приветствия">
+          💁‍♀️
+      </span></h1>
+      </CSSTransition>
+      <div className="HPcontainer">
+      <h2>Log in and I help you save and filter your favorite contacts</h2>
+      <h3>Your Phonebook</h3>
+      </div>
+      </>
+  )
 };
-
-const HomePage = () => (
-  <div style={styles.container}>
-  </div>
-);
 
 export default HomePage;
