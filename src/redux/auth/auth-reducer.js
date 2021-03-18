@@ -27,7 +27,8 @@ const error = createReducer(null, {
     [authActions.registerError]: setError,
     [authActions.loginError]: setError,
     [authActions.logoutError]: setError,
-    [authActions.getCurrentUserError]: setError
+    [authActions.getCurrentUserError]: setError,
+    [authActions.clearError]: () => null,
 });
 
 const isAuthenticated = createReducer(false, {

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import authOperations from '../redux/auth/auth-operations.js';
 import { CSSTransition } from 'react-transition-group';
+import authSelectors from '../redux/auth/auth-selectors';
+import Notification from '../components/Notification/Notification';
 
 class LoginPage extends Component {
   state = {
@@ -36,6 +38,10 @@ class LoginPage extends Component {
              <h1 className="Title">Enter your data</h1>
          </CSSTransition>
 
+        {this.props.error &&
+                    <Notification
+            message={'ERROR. Check data.'} />}
+        
         <form
           className="Form"
           onSubmit={this.handleSubmit}
@@ -75,9 +81,13 @@ class LoginPage extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+    error: authSelectors.getError(state)
+});
+
 const mapDispatchToProps = {
   onLogin: authOperations.logIn,
 };
 
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
 

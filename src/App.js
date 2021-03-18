@@ -35,18 +35,18 @@ class App extends Component {
                         component={HomePage} />
                     <PublicRoute
                         path="/register"
-                        redirectTo="/contacts"
                         restricted
+                        redirectTo="/contacts"
                         component={RegisterPage} />
                     <PublicRoute
                         path="/login"
-                        redirectTo="/contacts"
                         restricted
+                        redirectTo="/contacts"
                         component={LoginPage} />
                     <PrivateRoute
                         path="/contacts"
-                        component={PhoneBookPage}
                         redirectTo="/login"
+                        component={PhoneBookPage}
                     />
                     </Switch>
                  </Suspense>
