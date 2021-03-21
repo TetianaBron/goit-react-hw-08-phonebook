@@ -18,7 +18,7 @@ class PhoneBookPage extends Component {
         contacts: PropTypes.arrayOf(PropTypes.object),
         fetchContacts: PropTypes.func,
         isLoadingContacts: PropTypes.bool,
-        error: PropTypes.object
+        error: PropTypes.string
     };
    
     componentDidMount() {
@@ -31,9 +31,8 @@ class PhoneBookPage extends Component {
             <Layout>
                 <Logo />
 
-                 {this.props.error &&
                     <Notification
-                        message={`ERROR: ${this.props.error.message}.`} />}
+                        message={this.props.error} />
                 
                 <ContactForm />
                     

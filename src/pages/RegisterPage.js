@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import authOperations from '../redux/auth/auth-operations';
 import { CSSTransition } from 'react-transition-group';
+import authSelectors from '../redux/auth/auth-selectors';
+import Notification from '../components/Notification/Notification';
+import Spinner from '../components/Spinner/Spinner';
 
 class RegisterPage extends Component {
+   static propTypes = {
+     error: PropTypes.string,
+     isLoadingAuth: PropTypes.bool,
+  };
+
   state = {
     name: '',
     email: '',
-    password: '',
+    password: ''
   };
 
   handleChange = ({ target: { name, value } }) => {
@@ -36,6 +45,12 @@ class RegisterPage extends Component {
              >
              <h1 className="Title">Enter your data</h1>
          </CSSTransition>
+
+         <Notification
+            message={this.props.error}
+        />
+        
+        {this.props.isLoadingAuth && <Spinner />}
 
         <form
           onSubmit={this.handleSubmit}
@@ -89,9 +104,14 @@ class RegisterPage extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  error: authSelectors.getError(state),
+  isLoadingAuth: authSelectors.getLoading(state),
+});
+
 const mapDispatchToProps = {
   onRegister: authOperations.register,
 };
 
-export default connect(null, mapDispatchToProps)(RegisterPage);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage);
 

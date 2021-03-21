@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import authOperations from '../redux/auth/auth-operations.js';
 import { CSSTransition } from 'react-transition-group';
 import authSelectors from '../redux/auth/auth-selectors';
 import Notification from '../components/Notification/Notification';
+import Spinner from '../components/Spinner/Spinner';
 
 class LoginPage extends Component {
+  static propTypes = {
+    error: PropTypes.string,
+    isLoadingAuth: PropTypes.bool,
+  };
+  
   state = {
     email: '',
     password: '',
@@ -18,10 +25,10 @@ class LoginPage extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.props.onLogin(this.state);
+      this.props.onLogin(this.state);
 
-    this.setState({ name: '', email: '', password: '' });
-  };
+      this.setState({ name: '', email: '', password: '' });
+    };
 
   render() {
     const { email, password } = this.state;
@@ -38,9 +45,12 @@ class LoginPage extends Component {
              <h1 className="Title">Enter your data</h1>
          </CSSTransition>
 
-        {this.props.error &&
-                    <Notification
-            message={'ERROR. Check data.'} />}
+        
+        <Notification
+            message={this.props.error}
+          />
+        
+        {this.props.isLoadingAuth && <Spinner />}
         
         <form
           className="Form"
@@ -82,7 +92,8 @@ class LoginPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    error: authSelectors.getError(state)
+  error: authSelectors.getError(state),
+  isLoadingAuth: authSelectors.getLoading(state),
 });
 
 const mapDispatchToProps = {

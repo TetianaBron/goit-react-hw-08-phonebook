@@ -32,6 +32,8 @@ class App extends Component {
                     <PublicRoute
                         exact
                         path="/"
+                        restricted
+                        redirectTo="/contacts"
                         component={HomePage} />
                     <PublicRoute
                         path="/register"

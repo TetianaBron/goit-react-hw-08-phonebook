@@ -11,26 +11,29 @@ import authActions from '../../redux/auth/auth-actions';
 class Notification extends Component {
     static propTypes = {
         message: PropTypes.string,
-        error: PropTypes.object,
-        clearError: PropTypes.func
+        errorPb: PropTypes.object,
+        errorAuth: PropTypes.string,
+        clearErrorPb: PropTypes.func,
+        clearErrorPAuth: PropTypes.func
     };
    
    
-    componentDidMount() {
-        if (this.props.errorPb) {
+    componentDidUpdate() {
+         if (this.props.errorAuth) {
             setTimeout(() => {
-                this.props.clearErrorPb();
+                this.props.clearErrorAuth(this.state);
             }, 2500);
+             return;
         }
-        else if (this.props.errorAuth) {
+           if (this.props.errorPb) {
             setTimeout(() => {
-                this.props.clearErrorAuth();
+                this.props.clearErrorPb(this.state);
             }, 2500);
+             return;
         }
     }
-
+    
     render() {
-
         return (
             <CSSTransition
             in={this.props.message}
@@ -59,3 +62,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Notification);
+

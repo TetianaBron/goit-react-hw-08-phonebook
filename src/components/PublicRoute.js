@@ -9,14 +9,14 @@ import authSelectors from '../redux/auth/auth-selectors';
  */
 const PublicRoute = ({
   component: Component,
-  isAuthenticated,
+  token,
   redirectTo,
   ...routeProps
 }) => (
-  <Route
+  <Route 
     {...routeProps}
     render={props =>
-      isAuthenticated && routeProps.restricted ? (
+      token && routeProps.restricted ? (
         <Redirect to={redirectTo} />
       ) : (
         <Component {...props} />
@@ -26,7 +26,7 @@ const PublicRoute = ({
 );
 
 const mapStateToProps = state => ({
-  isAuthenticated: authSelectors.getIsAuthenticated(state),
+  token: authSelectors.getToken(state)
 });
 
 export default connect(mapStateToProps)(PublicRoute);

@@ -11,10 +11,11 @@ const Spinner = () => {
                  color="#3f51b5"
                  height={100}
                  width={100}
-                 timeout={300} 
+                timeout={300} 
                 />
         </div>
     );
 };
 
 export default Spinner;
+

@@ -69,6 +69,8 @@ const getCurrentUser = () => async (dispatch, getState) => {
     dispatch(authActions.getCurrentUserSuccess(response.data));
   } catch (error) {
     dispatch(authActions.getCurrentUserError(error.message));
+    //На случай если в локал сторедж остался какой-то токен чтобы его почистить
+    dispatch(authActions.logoutSuccess());
   }
 };
 

@@ -5,14 +5,16 @@ import authSelectors from '../redux/auth/auth-selectors';
 
 const Navigation = ({isAuthenticated}) => (
   <nav>
-    <NavLink
-      to="/"
-      exact
-      className="NavLink"
-      activeClassName="NavLink--active"
-    >
+    {!isAuthenticated &&
+     ( <NavLink
+        to="/"
+        exact
+        className="NavLink"
+        activeClassName="NavLink--active"
+      >
       Home
     </NavLink>
+    )}
 
     {isAuthenticated && 
     (<NavLink
