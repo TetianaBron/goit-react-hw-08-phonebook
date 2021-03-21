@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import authSelectors from '../redux/auth/auth-selectors';
 
 const Navigation = ({isAuthenticated}) => (
-  <nav>
+  <nav className="nav">
     {!isAuthenticated &&
      ( <NavLink
         to="/"
